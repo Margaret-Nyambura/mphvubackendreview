@@ -30,6 +30,7 @@ end
 deactivate nondestructive
 
 set -gx VIRTUAL_ENV "/home/student/mphvubackendreview/mphavuspotus/env"
+set -gx VIRTUAL_ENV "/home/student/Documents/mphvubackendreview/mphavuspotus/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
