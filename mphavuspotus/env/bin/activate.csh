@@ -10,6 +10,8 @@ deactivate nondestructive
 
 setenv VIRTUAL_ENV "/home/student/mphvubackendreview/mphavuspotus/env"
 
+setenv VIRTUAL_ENV "/home/student/Documents/mphvubackendreview/mphavuspotus/env"
+
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
 
