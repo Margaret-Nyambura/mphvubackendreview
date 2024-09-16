@@ -3,6 +3,22 @@ from rest_framework.response import Response
 from rest_framework import status 
 from video_records.models import VideoRecord 
 from .serializers import VideoRecordSerializer
+from django.shortcuts import render
+from rest_framework.response import Response
+from players.models import Players
+from .serializers import PlayerSerializer
+from django.shortcuts import get_object_or_404
+import json
+from django.contrib.auth import authenticate, login as auth_login
+from django.core.mail import send_mail
+from django.conf import settings
+from .serializers import UserRegistrationSerializer, LoginSerializer, ResetPasswordSerializer, MinimalUseSerializer
+from user.models import User
+from performance.models import Performance
+from .serializers import PerformanceSerializer
+from teams.models import Team
+from .serializers import TeamSerializer
+
 # Define a class-based view for handling the list of video records.
 class VideoRecordListView(APIView):
     # Handle GET requests to retrieve a list of video records.
@@ -74,23 +90,6 @@ class VideoRecordDetailView(APIView):
             # Return HTTP 404 status if the record is not found.
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-
-from django.shortcuts import render
-from rest_framework import status
-from rest_framework.response import Response
-from players.models import Players
-from rest_framework.views import APIView
-from .serializers import PlayerSerializer
-from django.shortcuts import get_object_or_404
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status
-import json
-from django.contrib.auth import authenticate, login as auth_login
-from django.core.mail import send_mail
-from django.conf import settings
-from .serializers import UserRegistrationSerializer, LoginSerializer, ResetPasswordSerializer, MinimalUseSerializer
-from user.models import User
 
 # Handles listing and creating players
 class PlayerListView(APIView):
@@ -241,12 +240,7 @@ class UserDetailView(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-from performance.models import Performance
-from rest_framework import status
-from django.shortcuts import get_object_or_404
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .serializers import PerformanceSerializer
+
 
 class PerformanceListView(APIView):
     def get(self, request):
@@ -274,7 +268,6 @@ class PerformanceView(APIView):
             return Response(serializer.data)
 
     def post(self, request, player_id):
-        data = request.data.copy()
         data['player_id'] = player_id
         serializer = PerformanceSerializer(data=data)
         if serializer.is_valid():
@@ -291,11 +284,7 @@ class PerformanceView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # Create your views here.
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from teams.models import Team
-from .serializers import TeamSerializer
+
 
 # Define a view to handle operations on a list of teams
 class TeamListView(APIView):
