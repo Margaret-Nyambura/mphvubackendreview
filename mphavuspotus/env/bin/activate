@@ -37,6 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+VIRTUAL_ENV="/home/student/mphvubackendreview/mphavuspotus/env"
 VIRTUAL_ENV="/home/student/Documents/mphvubackendreview/mphavuspotus/env"
 export VIRTUAL_ENV
 

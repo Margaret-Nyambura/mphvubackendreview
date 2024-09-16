@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
   # Map the URL path 'admin/' to Django's built-in admin interface.
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
     
     # Map the URL path 'api/' to the URL configuration defined in the 'api.urls' module.
     path('api/', include('api.urls')),
